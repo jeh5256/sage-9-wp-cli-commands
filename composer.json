@@ -1,5 +1,5 @@
 {
-    "name": "jeh/sage9-artisan",
+    "name": "jeh5256/sage-9-wp-cli-commands",
     "description": "Bring over commands from Laravel/Artisan to help streamline wp cli",
     "type": "wp-cli-package",
     "license": "v",
