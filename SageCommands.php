@@ -3,6 +3,7 @@
 namespace SageCommand;
 
 use Illuminate\Support\Str;
+use WP_CLI;
 
 /**
  * Commands to generate sage template and controller files
