@@ -1,4 +1,4 @@
-jeh/sage-9-wp-cli-commands
+jeh5256/sage-9-wp-cli-commands
 ===========================
 
 Command line tool to generate sage 9 template and controller files.
