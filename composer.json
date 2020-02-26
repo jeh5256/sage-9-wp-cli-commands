@@ -10,9 +10,9 @@
         }
     ],
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.3"
     },
     "autoload": {
-        "files": [ "SageCommands.php" ]
+        "files": [ "command.php" ]
     }
 }

@@ -18,9 +18,12 @@ class SageCommands
      * : Whether or not to create a controller file
      * ---
      * default: false
+<<<<<<< HEAD
      * options:
      *   - true
      *   - false
+=======
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
      * ---
      *
      * [--type=<type>]
@@ -31,7 +34,11 @@ class SageCommands
      *   - page
      *   - post
      * ---
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
      * ## EXAMPLES
      *
      *     wp make-template homePage --type=page --c=true
@@ -45,13 +52,21 @@ class SageCommands
         $template_name_arg = $args[0];
         $create_controller_file = WP_CLI\Utils\get_flag_value($assoc_args, 'c', $default = false);
         $template_type = WP_CLI\Utils\get_flag_value($assoc_args, 'type', $default = 'page');
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
         if ($template_type !== 'post') {
             $this->generate_template_file($template_name_arg);
         }
 
         $this->generate_partial_file($template_name_arg, $template_type);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
         if ($create_controller_file) {
             $this->generate_controller_files($template_name_arg, $template_type);
         }
@@ -86,10 +101,17 @@ class SageCommands
     {
         $template_name_arg = $args[0];
         $template_type = WP_CLI\Utils\get_flag_value($assoc_args, 'type', $default = 'page');
+<<<<<<< HEAD
         
         $this->generate_controller_files($template_name_arg, $template_type);
     }
     
+=======
+
+        $this->generate_controller_files($template_name_arg, $template_type);
+    }
+
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
     private function generate_template_file($template_name)
     {
         $template_name_kebab = Str::kebab($template_name);
@@ -126,6 +148,7 @@ class SageCommands
         } else {
             WP_CLI::error("Template File {$template_file_name} Already Exists");
         }
+<<<<<<< HEAD
     }
     
     private function generate_partial_file($template_name, $type)
@@ -185,9 +208,72 @@ class SageCommands
             WP_CLI::success("Controller {$controller_file_name} File Created");
         } else {
             WP_CLI::error("Controller {$controller_file_name} already exists");
+=======
+    }
+
+    private function generate_partial_file($template_name, $type)
+    {
+        $template_name_kebab = Str::kebab($template_name);
+        $partial_name = ($type === 'post') ? "content-single-{$template_name_kebab}.blade.php" : "content-page-{$template_name_kebab}.blade.php";
+        $partial_base_directory = $_SERVER['DOCUMENT_ROOT'] . parse_url(get_template_directory_uri())['path'] . '/views/partials';
+        $partial_full_path = $partial_base_directory . '/' . $partial_name;
+
+        if (!file_exists($partial_full_path)) {
+            $template_partial_file_handle = fopen($partial_full_path, 'w') or die('Cannot open file:  ' . $partial_name);
+
+            $template_partial_file_content = <<<EOT
+                <?php
+                EOT;
+
+            fwrite($template_partial_file_handle, $template_partial_file_content);
+            fclose($template_partial_file_handle);
+
+            WP_CLI::success("Partial File {$partial_name} Created");
+        } else {
+            WP_CLI::error("Partial File {$partial_name} Already Exists");
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
+        }
+    }
+
+<<<<<<< HEAD
+$instance = new SageCommands();
+WP_CLI::add_command('sage', $instance);
+=======
+    /**
+     * @param $template_name
+     * @param $type
+     */
+    private function generate_controller_files($template_name, $type)
+    {
+        $template_name_kebab = Str::kebab($template_name);
+        $class_name = str_replace('-', '', ucwords(mb_convert_case($template_name_kebab, MB_CASE_TITLE, 'UTF-8'), '_'));
+        $controller_name = ($type === 'post') ? "Single{$class_name}" : "Template{$class_name}";
+        $controller_file_name = "{$controller_name}.php";
+        $controller_base_directory = $_SERVER['DOCUMENT_ROOT'] . parse_url(get_theme_file_uri())['path'] . '/app/Controllers';
+        $controller_full_path = $controller_base_directory . '/'  . $controller_file_name;
+
+        if (!file_exists($controller_full_path)) {
+            $template_controller_file_handle = fopen($controller_full_path, 'x') or die('Cannot open file:  ' . $controller_file_name);
+            $template_controller_file_content = <<<EOT
+            <?php
+            
+            namespace App\Controllers;
+            
+            use Sober\Controller\Controller;
+            
+            class {$controller_name} extends Controller
+            {
+                protected \$acf = [];
+            }
+            EOT;
+
+            fwrite($template_controller_file_handle, $template_controller_file_content);
+            fclose($template_controller_file_handle);
+
+            WP_CLI::success("Controller {$controller_file_name} File Created");
+        } else {
+            WP_CLI::error("Controller {$controller_file_name} already exists");
         }
     }
 }
-
-$instance = new SageCommands();
-WP_CLI::add_command('sage', $instance);
+>>>>>>> cda5e4e3833e359a7d6cedddb25e35b8250fe8d7
