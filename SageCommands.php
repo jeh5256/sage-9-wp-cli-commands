@@ -102,7 +102,8 @@ class SageCommands
         if (!file_exists($template_full_path)) {
             $template_file_handle = fopen($template_full_path, 'x') or die('Cannot open file:  ' . $template_file_name);
 
-            $template_file_content = <<<EOT 
+            $template_file_content = <<<EOT
+                 
                 {{--
                     Template Name: {$template_name} Template
                 --}}
