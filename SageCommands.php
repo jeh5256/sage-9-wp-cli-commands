@@ -18,9 +18,6 @@ class SageCommands
      * : Whether or not to create a controller file
      * ---
      * default: false
-     * options:
-     *   - true
-     *   - false
      * ---
      *
      * [--type=<type>]
