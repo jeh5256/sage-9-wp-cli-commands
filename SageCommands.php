@@ -1,4 +1,7 @@
 <?php
+
+namespace SageCommand;
+
 use Illuminate\Support\Str;
 
 /**
