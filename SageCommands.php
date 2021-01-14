@@ -95,7 +95,7 @@ class SageCommands
     {
         $template_name_kebab = Str::kebab($template_name);
         $template_file_name = "template-{$template_name_kebab}.blade.php";
-        $template_partial_name = "content-page-{$template_name_kebab}.blade.php";
+        $template_partial_name = "partials.content-page-{$template_name_kebab}";
         $template_base_directory = $_SERVER['DOCUMENT_ROOT'] . parse_url(get_template_directory_uri())['path'] . '/views';
         $template_full_path = $template_base_directory . '/' . $template_file_name;
 
@@ -103,7 +103,6 @@ class SageCommands
             $template_file_handle = fopen($template_full_path, 'x') or die('Cannot open file:  ' . $template_file_name);
 
             $template_file_content = <<<EOT
-                 
                 {{--
                     Template Name: {$template_name} Template
                 --}}
